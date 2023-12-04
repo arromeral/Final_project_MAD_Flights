@@ -4,6 +4,8 @@ Jupyter_Notebooks/cookies/
 Jupyter_Notebooks/selenium/
 Jupyter_Notebooks/.ipynb_checkpoints/
 Jupyter_Notebooks/__pycache__/
+Jupyter_Notebooks/drivers/
+Jupyter_Notebooks/catboost_info/
 Jupyter_Notebooks/pass/
 src/__pycache__/
 sql_databases/*.sql
