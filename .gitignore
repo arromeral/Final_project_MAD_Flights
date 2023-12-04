@@ -1,5 +1,5 @@
 .ipynb_checkpoints/.ipynb_checkpoints
-data/flights
+data/flights/*.csv
 "Jupyter Notebooks/"cookies/
 "Jupyter Notebooks/"selenium/
 "Jupyter Notebooks/".ipynb_checkpoints/
