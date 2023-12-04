@@ -28,12 +28,10 @@ background-attachment: local;
 """
 st.markdown(page_bg_img, unsafe_allow_html=True)
 
-
-
 ######################################################################################################################
 # st.sidebar.header('MAD Flights Project')
 # st.sidebar.subheader('Streamlit Workshop for IH')
-st.sidebar.image(Image.open('src/images/logo.png'))
+st.sidebar.image(Image.open('logo.png'))
 ######################################################################################################################
 
 ######################################################################################################################
@@ -46,7 +44,6 @@ if st.sidebar.button("📊 MAD Flights Dashboards"):
     st.markdown(iframe_code, unsafe_allow_html=True)
 ######################################################################################################################
 
-
 if st.sidebar.button("🗺️ Foursquare Studio Flights map"):
     # st.header("Foursquare Studio Flights map")
     iframe_code2 = '''
@@ -54,13 +51,6 @@ if st.sidebar.button("🗺️ Foursquare Studio Flights map"):
     '''
     # Mostrar el iframe en Streamlit
     st.markdown(iframe_code2, unsafe_allow_html=True)
-
-    user_input = st.text_input("Ingresa tu nombre", "Escribe aquí...")
-
-    # Verificar si se proporciona un nombre
-    if user_input:
-        # Ejecutar código basado en la entrada del usuario
-        st.write(f"Hola, {user_input}!")
 
 ######################################################################################################################
 
