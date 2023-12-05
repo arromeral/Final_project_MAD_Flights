@@ -12,6 +12,15 @@ import io
 st.set_page_config(page_title='Mad Flights', page_icon="✈️", layout="wide")
 # st.title('MAD Flights')
 ######################################################################################################################
+st.title("Live Weather in MAD Barajas")
+# Código HTML con iframe
+
+html_code = '''
+<iframe id="TTF_FiThuxWheYU9zQsUjauEEcmjA6nU1W1lrdktEZCoK1z53I35m" src="https://en.tutiempo.net/s-widget/tt_NXwxfDI1MjUyNXxufG58bnwyNTEwNHwzMHwxMXwxfDZ8NXwzfDI1fHN8c3xufEU4NkY2Rnw3MUI5RjB8fEJEQkRCRHxGRjdEMDN8NjZ8M3w2OHw2MHwxNDR8MjJ8NzR8MHw1MDV8ODl8Njh8Mzd8MTV8MTV8MzJ8NjF8Mjh8aWp8MXw%2C" frameborder="0" scrolling="no" width="100%" height="100%" allowtransparency="allowtransparency" style="overflow:hidden;pointer-events:auto;"></iframe>
+'''
+
+# Insertar HTML usando st.components.html
+st.components.v1.html(html_code, height=89)
 
 # img = get_img_as_base64("image.jpg")
 
