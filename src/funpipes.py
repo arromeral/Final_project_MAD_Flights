@@ -25,6 +25,35 @@ from datetime import datetime, timedelta
 import re
 
 
+
+def generar_columna_gust(valor):
+    """
+    Extrae los dos primeros dígitos seguidos de un espacio del valor de la columna pressure
+    ya que erroneamente los valores de ráfagas(gusts) cuando los hay se encuentran es esta columna.
+    
+    Parameters
+    ----------
+    valor : str
+        Cadena de entrada desde la cual se intentan extraer los dos primeros dígitos.
+
+    Returns
+    -------
+    str or int
+        Si se encuentran dos dígitos seguidos de un espacio al principio de 'valor', se devuelve 
+        la cadena que representa esos dos dígitos. De lo contrario, se devuelve 0.
+        
+    """
+ 
+    pattern = re.compile(r'^(\d{2})\s')  # Dos dígitos seguidos de un espacio
+    match = pattern.match(valor)
+
+    if match:
+        return match.group(1)
+
+    else:
+        return 0 
+    
+
 def obtener_duracion_vuelo(cadena):
     match = re.search(r'(\d+)h (\d+)m|\d+m|\d+h', cadena)
 
@@ -55,6 +84,76 @@ def obtener_fecha_manana():
     formato_fecha = fecha_manana.strftime("%Y-%m-%d")
 
     return formato_fecha
+
+def create_acc_gusts():
+    url = 'https://en.tutiempo.net/records/lemd/'
+
+    condition_dict = {'Chance of Rain': 0.0,'Chance of Showers': 0.5,'Clear': 0.0,'Cloudy': 0.0,'Drizzle': 0.0,'Fair': 0.0,'Fog': 1.0,
+    'Fog Patches': 0.0,'Freezing': 1.0,'Hail': 0.5,'Light Rain': 0.5,'Light Snow': 1.0,'Mist': 0.0,'Mostly Cloudy': 0.0,    
+    'Partly Cloudy': 0.0,'Rain': 0.5,'Rain and Snow': 1.0,'Snow': 1.0,'T-Storm': 1.0,'Widespread Fog': 0.5}
+
+    opciones = Options()
+    opciones.add_extension('drivers/adblock.crx')  # adblocker
+    opciones.add_argument('cookies=cookies')  # man
+
+    # Inicializo el driver
+    driver = webdriver.Chrome(options=opciones)
+    driver.get(url)
+    wait = WebDriverWait(driver, 20)
+    time.sleep(20)
+
+    # Esperar a que aparezca el botón de aceptar normas
+    normas_button_xpath = '/html/body/div[18]/div[2]/div[1]/div[2]/div[2]/button[1]'
+    wait.until(EC.element_to_be_clickable((By.XPATH, normas_button_xpath)))
+    normas_button = driver.find_element(By.XPATH, normas_button_xpath)
+    normas_button.click()
+    print("Aceptado normas")
+
+    # Esperar a que aparezca el botón de aceptar cookies
+    cookies_button_xpath = '//*[@id="DivAceptarCookies"]/div/a[2]'
+    wait.until(EC.element_to_be_clickable((By.XPATH, cookies_button_xpath)))
+    cookies_button = driver.find_element(By.XPATH, cookies_button_xpath)
+    cookies_button.click()
+    print("Aceptadas cookies")
+
+    # Esperar a que aparezca el botón de aceptar cookies
+    last_button_xpath = '//*[@id="ColumnaIzquierda"]/div/div[3]/input'
+    wait.until(EC.element_to_be_clickable((By.XPATH, last_button_xpath)))
+    last_button = driver.find_element(By.XPATH, last_button_xpath)
+    last_button.click()
+    print("View last 24h")
+
+    # Esperar a que cargue la página (usando un elemento en la tabla como referencia)
+    wait.until(EC.presence_of_element_located((By.XPATH, '//table//tbody//tr[3]')))
+    print("Página cargada")
+
+    day = driver.find_elements(By.XPATH, '//table//tbody//tr')[1].text
+
+    time.sleep(5)
+
+    table = [
+        row.text.split('\n')[0:3] + row.text.replace(' km/h', '').split('\n')[-1].split(' ', 2)
+        for row in driver.find_elements(By.XPATH, '//table//tbody//tr')[3::2]
+    ]  # Copia los registros
+
+    print("Registros extraídos")
+
+    columns = ["Day", "Hour", "Condition", "Temperature", "Wind", "Relative_hum", "Pressure"]  # Añade las columnas
+
+    for i in table:
+        i.insert(0, day)  # Inserta los registros en la tabla
+
+    gs = pd.DataFrame(table, columns=columns)
+    gs = gs.dropna()
+
+    gs['gusts'] = gs['Pressure'].apply(generar_columna_gust)
+    gs['bad_weather'] = gs['Condition'].map(condition_dict)
+
+    gust = gs.gusts.loc[:20].sum()  # Añade programación defensiva
+    bad_weather = gs.bad_weather.loc[:20].sum()
+    driver.quit()  # Cerrar el navegador después de la extracción de datos
+
+    return gust , bad_weather
 
 def scrape_tutiempo_data():
     # Inicializar el driver de Chrome
@@ -272,5 +371,6 @@ def procesar_datos(fl, mt):
 
     # Crear una nueva columna 'day_time' basada en las horas del día
     fl['day_time'] = pd.cut(fl['hour'].dt.hour, bins=[0, 6, 12, 18, 24], labels=['Early Morning', 'Morning', 'Afternoon', 'Night'], right=False)
-
+    fl[['acc_Gusts','acc_bad_weather']] = create_acc_gusts()
+    
     return fl
