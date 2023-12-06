@@ -7,5 +7,6 @@ Jupyter_Notebooks/__pycache__/
 Jupyter_Notebooks/drivers/
 Jupyter_Notebooks/catboost_info/
 Jupyter_Notebooks/pass/
+Jupyter_Notebooks/modelos_ML/
 src/__pycache__/
 sql_databases/*.sql
