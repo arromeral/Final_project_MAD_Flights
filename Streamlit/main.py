@@ -14,6 +14,16 @@ import io
 st.set_page_config(page_title='Mad Flights', page_icon="✈️", layout="wide")
 # st.title('MAD Flights')
 ######################################################################################################################
+# Construct the path to the logo file using pathlib
+logo_path = Path(__file__).resolve().parents[2] / 'src/images/logo.png'
+
+# Display the logo in the sidebar header
+try:
+    st.sidebar.image(Image.open('logo.png'))
+except:
+    st.sidebar.image(str(logo_path), use_column_width=True)
+
+
 # st.title("Live Weather in MAD Barajas")
 # Código HTML con iframe
 html_code = '''
@@ -22,18 +32,6 @@ html_code = '''
 <script type="text/javascript" src="https://en.tutiempo.net/s-widget/l_yVNEuwkgE4KQpchKKFzk1E6xA6lKBMlEpkEk3"></script>
 </center>
 '''
-
-# html_code = '''
-# <center>
-# <div id="TT_yVNEuwkgE4KQpchKKFzk1E6xA6lKBMlEpkEk3">Weather - Tutiempo.net</div>
-# <script type="text/javascript" src="https://en.tutiempo.net/s-widget/l_yVNEuwkgE4KQpchKKFzk1E6xA6lKBMlEpkEk3"></script>
-# </center>
-# '''
-# html_code = '''
-# <center>
-# <iframe id="TTF_FiThuxWheYU9zQsUjauEEcmjA6nU1W1lrdktEZCoK1z53I35m" src="https://en.tutiempo.net/s-widget/tt_NXwxfDI1MjUyNXxufG58bnwyNTEwNHwzMHwxMXwxfDZ8NXwzfDI1fHN8c3xufEU4NkY2Rnw3MUI5RjB8fEJEQkRCRHxGRjdEMDN8NjZ8M3w2OHw2MHwxNDR8MjJ8NzR8MHw1MDV8ODl8Njh8Mzd8MTV8MTV8MzJ8NjF8Mjh8aWp8MXw%2C" frameborder="0" scrolling="no" width="100%" height="100%" allowtransparency="allowtransparency" style="overflow:hidden;pointer-events:auto;"></iframe>
-# </center>
-# '''
 
 # Insertar HTML usando st.components.html
 st.components.v1.html(html_code, height=89)
