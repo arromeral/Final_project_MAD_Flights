@@ -3,6 +3,20 @@
 ![banner](https://github.com/arromeral/Final_project_MAD_Flights/assets/138980560/e4d28428-379e-4a05-af17-8c0843177be6)
 
 ## Contents
+
+The contents of the project are as follows:
+
+- [**Jupyter_Notebooks**](https://github.com/arromeral/Final_project_MAD_Flights/tree/main/Jupyter_Notebooks): Folder with the Jupyter Notebooks used during the project, classified among extraction, cleaning, processing, database generation, and machine learning
+- [**data**](https://github.com/arromeral/Final_project_MAD_Flights/tree/main/data): Folder that contains the main data used in the project, both extracted and transformed for later loading or model training.
+   - [**ML**](https://github.com/arromeral/Final_project_MAD_Flights/tree/main/data/ML): Folder with data used to train the ML models.      
+   - [**flights**](https://github.com/arromeral/Final_project_MAD_Flights/tree/main/data/flights): Folder with data referring to flight records obtained from flightera.
+   - [**metar**](https://github.com/arromeral/Final_project_MAD_Flights/tree/main/data/metars): Folder with data referring to the METAR reports obtained from tutiempo.net.
+- [**sql_databases**](https://github.com/arromeral/Final_project_MAD_Flights/tree/main/sql_databases): Folder with the files with the EER Diagram of the relational Database created and the file to import the Database created.
+- [**src**](https://github.com/arromeral/Final_project_MAD_Flights/tree/main/src): Folder with the files of functions created and the predictions pipeline.
+- [**visualization**](https://github.com/arromeral/Final_project_MAD_Flights/tree/main/visualization): Folder with the Power BI Dashboards.
+- [**images**](https://github.com/arromeral/Final_project_MAD_Flights/tree//main/images): Folder with the images used in this document.
+- [**Streamlit**](https://github.com/arromeral/Final_project_MAD_Flights/tree/main/Streamlit): Folder with the streamlit app configuration and objects.
+
 ## About the project
 ### Introduction
 Embark on a fascinating journey through the skies with MAD FLIGHTS, our interactive application designed to explore the dynamic world of flights departing from Madrid Barajas Airport. Delve into a comprehensive dataset encompassing a million flights from 2017 to the present day, uncovering the unique narratives behind each departure.
