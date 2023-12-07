@@ -1,6 +1,12 @@
 
 # MAD FLIGHTS Final Project
 ![banner](https://github.com/arromeral/Final_project_MAD_Flights/assets/138980560/e4d28428-379e-4a05-af17-8c0843177be6)
+## Descripition
+This project consists of several parts:
+- A complete ETL process (Extract-Transfor-Load) for the generation of a database of all flight departures from the Madrid-Barajas Adolfo Suárez Airport over a period of six years (November 2017 - October 2023). Additionally, METAR weather reports for the same period had bene extracted and related to the flights.
+- Data visualization created using Power BI, focusing on analyzing flights departures from Adolfo Suárez Madrid-Barajas Airport over the last 7 years. The visualization consists of two interactive dashboards providing detailed insights into various aspects of flights; correlating flight data and METAR weather reports.
+- Implementing machine learning for predicting flight delays. This includes training and deploying regression and classification models. Additionally, pipelines are generated to automate the prediction process.
+- Creation of a comprehensive, user-friendly Streamlit application that consolidates all the previously mentioned components.
 
 ## Contents
 
