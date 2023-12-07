@@ -62,8 +62,8 @@ st.components.v1.html(html_code, height=89)
 # Cargar el archivo CSV
 try:
     df = pd.read_csv('prediciones/prediciones_07_12_2023.csv')
-except:
-    df = Path(__file__).parents[1] / 'prediciones/prediciones_07_12_2023.csv'
+except FileNotFoundError:
+    df = pd.read_csv(Path(__file__).resolve().parent / 'prediciones/prediciones_07_12_2023.csv')
 print(df.info())
 # Variable de estado para controlar la pestaña activa
 active_tab = st.sidebar.radio("Navigation", ["🎯 **Flight Delay Predictions**", "📊 **MAD Flights Dashboards**",
