@@ -30,3 +30,5 @@ https://github.com/arromeral/Final_project_MAD_Flights/assets/138980560/93a4b9db
 
 ## Technical workflow
 ![flujos](https://github.com/arromeral/Final_project_MAD_Flights/assets/138980560/a1d39ca6-2cf5-4fc3-b3c7-f4fe1de59066)
+
+## Greetings
