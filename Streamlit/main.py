@@ -30,10 +30,18 @@ except:
 # Código HTML con iframe
 html_code = '''
 <center>
-<div id="TT_yVNEuwkgE4KQpchKKFzk1E6xA6lKBMlEpkEk3" style="width: 600px; height: 130px;">Weather - Tutiempo.net</div>
-<script type="text/javascript" src="https://en.tutiempo.net/s-widget/l_yVNEuwkgE4KQpchKKFzk1E6xA6lKBMlEpkEk3"></script>
+    <div id="TT_FfNHCydBw4K9peKK7auka4mDg5uKaMloGoGom" style="width: 539px; height: 99px;">Weather - Tutiempo.net</div>
+    <script type="text/javascript" src="https://en.tutiempo.net/s-widget/l_FfNHCydBw4K9peKK7auka4mDg5uKaMloGoGom"></script>
 </center>
 '''
+
+
+# html_code = '''
+# <center>
+# <div id="TT_yVNEuwkgE4KQpchKKFzk1E6xA6lKBMlEpkEk3" style="width: 600px; height: 130px;">Weather - Tutiempo.net</div>
+# <script type="text/javascript" src="https://en.tutiempo.net/s-widget/l_yVNEuwkgE4KQpchKKFzk1E6xA6lKBMlEpkEk3"></script>
+# </center>
+# '''
 
 # Insertar HTML usando st.components.html
 st.components.v1.html(html_code, height=89)
@@ -68,15 +76,20 @@ print(df.info())
 # Variable de estado para controlar la pestaña activa
 active_tab = st.sidebar.radio("Navigation", ["🎯 **Flight Delay Predictions**", "📊 **MAD Flights Dashboards**",
 "🗺️ **Foursquare Studio Flights map**"])
+# Define the labels with HTML styling for white text color
 
 # Contenido de la pestaña "Flight Predictions"
 if active_tab == "🎯 **Flight Delay Predictions**":
     st.header("🎯 Flight Delay Predictions")
+
+    # Widget para el filtro de cod_flight_IATA y fecha en paralelo
+    col1, col2 = st.columns(2)
+
     # Widget para el filtro de cod_flight_IATA
-    cod_flight_iata = st.selectbox('Write or select your Flight code:', df['cod_flight_IATA'].unique())
+    cod_flight_iata = col1.selectbox('Write or select your Flight code:', df['cod_flight_IATA'].unique())
 
     # Widget para el filtro de fecha
-    selected_date = pd.to_datetime(st.date_input('Select the day of your flight:')).strftime('%Y-%m-%d')
+    selected_date = pd.to_datetime(col2.date_input('Select the day of your flight:')).strftime('%Y-%m-%d')
 
     # Filtrar el DataFrame
     filtered_df = df[(df['cod_flight_IATA'] == cod_flight_iata) & (df['day'] == selected_date)]
@@ -119,108 +132,9 @@ elif active_tab == "🗺️ **Foursquare Studio Flights map**":
     st.markdown(iframe_code2, unsafe_allow_html=True)
 
 # ######################################################################################################################
-# if st.sidebar.button("📊 MAD Flights Dashboards"):
-    # # st.header("MAD Flights Dashboards")
-    # iframe_code = '''
-    # <iframe title="Report Section" width="800" height="1330" src="https://app.powerbi.com/view?r=eyJrIjoiYTc2Yzk0N2MtNGM0Yy00ZjJmLTg5MDktZjM3ZTY5ODdkYWUxIiwidCI6IjZhZmVhODVkLWMzMjMtNDI3MC1iNjlkLWE0ZmIzOTI3YzI1NCIsImMiOjl9" frameborder="0" allowFullScreen="true"></iframe>
-    # '''
-    # # Mostrar el iframe en Streamlit
-    # st.markdown(iframe_code, unsafe_allow_html=True)
+
 # ######################################################################################################################
 
-# if st.sidebar.button("🗺️ Foursquare Studio Flights map"):
-#     # st.header("Foursquare Studio Flights map")
-#     iframe_code2 = '''
-#     <iframe width="100%" height="500px" src="https://studio.foursquare.com/public/cb363a0b-a11a-436d-9ecf-c848b70702d4/embed" frameborder="0" allowfullscreen></iframe>
-#     '''
-#     # Mostrar el iframe en Streamlit
-#     st.markdown(iframe_code2, unsafe_allow_html=True)
-
-
-
-# # Variable de estado para controlar la visibilidad de la nueva ventana
-# show_predictions = False
-# # Botón en la barra lateral para abrir la nueva ventana
-# if st.sidebar.button("🗺️ Fligth predictions"):
-#     show_predictions = True
-
-# # Nueva ventana con la información correspondiente
-# if show_predictions:
-
-#     # Cargar el archivo CSV
-#     df = pd.read_csv('prediciones/prediciones_07_12_2023.csv')
-
-#     # Widget para el filtro de cod_flight_IATA
-#     cod_flight_iata = st.selectbox('Write or select your Flight code:', df['cod_flight_IATA'].unique())
-
-#     # Widget para el filtro de fecha
-#     selected_date = pd.to_datetime(st.date_input('Select the day of your flight:')).strftime('%Y-%m-%d')
-
-#     # Filtrar el DataFrame
-#     filtered_df = df[(df['cod_flight_IATA'] == cod_flight_iata) & (df['day'] == selected_date)]
-#     st.subheader('Flight Predictions')
-    
-#     st.write('Resultado:')
-#     if not filtered_df.empty:
-#         result_tipo = filtered_df['Tipo'].iloc[0]
-
-#         # Mostrar mensaje según el valor de la columna "Tipo"
-#         if result_tipo == 'Tipo 0':
-#             st.write('¡Resultado correspondiente a Tipo 1!')
-#         elif result_tipo == 'Tipo 1':
-#             st.write('¡Resultado correspondiente a Tipo 2!')
-#         elif result_tipo == 'Tipo 2':
-#             st.write('¡Resultado correspondiente a Tipo 3!')
-#         elif result_tipo == 'Tipo 3':
-#             st.write('¡Resultado correspondiente a Tipo 4!')
-#         elif result_tipo == 'Tipo 4':
-#             st.write('¡Resultado correspondiente a Tipo 5!')
-#         else:
-#             st.write('Tipo no reconocido.')
-#     else:
-#         st.write('No hay resultados para la combinación seleccionada.')
-
-
-
-
-# # Cargar el archivo CSV
-# df = pd.read_csv('prediciones/prediciones_07_12_2023.csv')
-
-# # Widget para el filtro de cod_flight_IATA
-# cod_flight_iata = st.selectbox('Write or select your Flight code:', df['cod_flight_IATA'].unique())
-
-# # # Widget para el filtro de fecha
-# selected_date = pd.to_datetime(st.date_input('Select the day of your flight:')).strftime('%Y-%m-%d')
-# # selected_date = st.selectbox('Selecciona día:', df['day'].unique())
-# # Filtrar el DataFrame
-
-# # Convertir el formato de fecha
-# # selected_date = pd.to_datetime(selected_date).strftime('%Y-%m-%d')
-
-# filtered_df = df[(df['cod_flight_IATA'] == cod_flight_iata) & (df['day'] == selected_date)]
-# #
-# # Mostrar el resultado
-# st.write('Resultado:')
-# if not filtered_df.empty:
-#     result_tipo = filtered_df['Tipo'].iloc[0]
-
-#     # Mostrar mensaje según el valor de la columna "Tipo"
-#     if result_tipo == 'Tipo 0':
-#         st.write('¡Resultado correspondiente a Tipo 1!')
-#     elif result_tipo == 'Tipo 1':
-#         st.write('¡Resultado correspondiente a Tipo 2!')
-#     elif result_tipo == 'Tipo 2':
-#         st.write('¡Resultado correspondiente a Tipo 3!')
-#     elif result_tipo == 'Tipo 3':
-#         st.write('¡Resultado correspondiente a Tipo 4!')
-#     elif result_tipo == 'Tipo 4':
-#         st.write('¡Resultado correspondiente a Tipo 5!')
-#     else:
-#         st.write('Tipo no reconocido.')
-# else:
-#     st.write('No hay resultados para la combinación seleccionada.')
-    # Mostrar el iframe en Streamlit
-    # st.markdown(iframe_code2, unsafe_allow_html=True)
 ######################################################################################################################
 
 
