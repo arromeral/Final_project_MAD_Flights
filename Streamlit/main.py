@@ -11,7 +11,18 @@ from pathlib import Path
 import io
 # %%
 ######################################################################################################################
-st.set_page_config(page_title='Mad Flights', page_icon="✈️", layout="wide")
+# Define the custom theme
+custom_theme = {
+    "primaryColor": "#fffa23",
+    "backgroundColor": "#cfd2d2",
+    "secondaryBackgroundColor": "#f53f3f",
+    "textColor": "#121212"
+}
+
+
+st.set_page_config(page_title='Mad Flights', page_icon="✈️", layout="wide",
+    initial_sidebar_state="expanded",
+    **custom_theme)
 # st.title('MAD Flights')
 ######################################################################################################################
 # Construct the path to the logo file using pathlib
