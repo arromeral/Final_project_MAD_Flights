@@ -24,5 +24,9 @@ On the third page, experience flight patterns like never before. Navigate a 24-h
 
 Step into a captivating experience with MAD FLIGHTS, where data seamlessly intertwines with stories, and each flight reveals a distinctive narrative. Beyond charts and predictions, our platform immerses you in the vibrant tales of aviation. Navigate the skies with us, where every departure becomes a chapter, and each piece of information offers a glimpse into the dynamic world above. Join us in Connecting Data and Unveiling Stories – your gateway to narratives that soar high in the boundless expanse of aviation.
 
+
+https://github.com/arromeral/Final_project_MAD_Flights/assets/138980560/93a4b9db-304b-4b92-8cfa-6acf15dcc375
+
+
 ## Technical workflow
 ![flujos](https://github.com/arromeral/Final_project_MAD_Flights/assets/138980560/a1d39ca6-2cf5-4fc3-b3c7-f4fe1de59066)
