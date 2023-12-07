@@ -1,5 +1,7 @@
 
 # MAD FLIGHTS Final Project
+![banner](https://github.com/arromeral/Final_project_MAD_Flights/assets/138980560/e4d28428-379e-4a05-af17-8c0843177be6)
+
 ## Contents
 ## About the project
 ### Introduction
@@ -21,3 +23,6 @@ Looking ahead, our second page employs cutting-edge Machine Learning models to p
 On the third page, experience flight patterns like never before. Navigate a 24-hour flight map, created with Foursquare Studio, showcasing the ebb and flow of aircraft. Visualize the skies coming alive as planes take off and soar, providing a captivating snapshot of aviation in motion.
 
 Step into a captivating experience with MAD FLIGHTS, where data seamlessly intertwines with stories, and each flight reveals a distinctive narrative. Beyond charts and predictions, our platform immerses you in the vibrant tales of aviation. Navigate the skies with us, where every departure becomes a chapter, and each piece of information offers a glimpse into the dynamic world above. Join us in Connecting Data and Unveiling Stories – your gateway to narratives that soar high in the boundless expanse of aviation.
+
+## Technical workflow
+![flujos](https://github.com/arromeral/Final_project_MAD_Flights/assets/138980560/a1d39ca6-2cf5-4fc3-b3c7-f4fe1de59066)
