@@ -15,7 +15,7 @@ st.set_page_config(page_title='Mad Flights', page_icon="✈️", layout="wide")
 # st.title('MAD Flights')
 ######################################################################################################################
 # Construct the path to the logo file using pathlib
-logo_path = Path(__file__).resolve().parents[2] / 'src/images/logo.png'
+logo_path = Path(__file__).resolve() / 'logo.png'
 
 # Display the logo in the sidebar header
 try:
