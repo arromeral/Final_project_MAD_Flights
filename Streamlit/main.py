@@ -16,13 +16,14 @@ st.set_page_config(page_title='Mad Flights', page_icon="✈️", layout="wide")
 ######################################################################################################################
 # Construct the path to the logo file using pathlib
 # Construct the path to the logo file using pathlib
-logo_path = Path(__file__).resolve() / 'logo.png'
+logo_path = Path(__file__).resolve().parent / 'logo.png'
 
 # Display the logo in the sidebar header
 try:
     st.sidebar.image(Image.open('logo.png'))
-except FileNotFoundError:
+except:
     st.sidebar.image(str(logo_path), use_column_width=True)
+
 # st.title("Live Weather in MAD Barajas")
 # Código HTML con iframe
 html_code = '''
