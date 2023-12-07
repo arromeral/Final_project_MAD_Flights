@@ -21,8 +21,7 @@ custom_theme = {
 
 
 st.set_page_config(page_title='Mad Flights', page_icon="✈️", layout="wide",
-    initial_sidebar_state="expanded",
-    **custom_theme)
+    initial_sidebar_state="expanded",**custom_theme)
 # st.title('MAD Flights')
 ######################################################################################################################
 # Construct the path to the logo file using pathlib
