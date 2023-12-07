@@ -376,11 +376,9 @@ def procesar_datos(fl, mt):
     # Crear una nueva columna 'day_time' basada en las horas del día
     fl['day_time'] = pd.cut(fl['hour'].dt.hour, bins=[0, 6, 12, 18, 24], labels=['Early Morning', 'Morning', 'Afternoon', 'Night'], right=False)
     fl[['acc_Gusts','acc_bad_weather']] = create_acc_gusts()
-<<<<<<< HEAD
+
     fl.Condition[fl.Condition.str.strip() == 'Mostly cloudy'] = 'Mostly Cloudy'
-=======
     
->>>>>>> 8278c306b701fd8bd0ce93eeae23b0c5ae3afd99
     return fl
 
 def predecir_y_asignar_tipos_retraso(fl):
