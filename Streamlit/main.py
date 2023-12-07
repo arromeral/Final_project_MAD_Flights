@@ -7,7 +7,7 @@ import pandas as pd
 import webbrowser
 import base64
 from datetime import datetime, timedelta
-
+from pathlib import Path
 import io
 # %%
 ######################################################################################################################
@@ -60,8 +60,10 @@ st.components.v1.html(html_code, height=89)
 # st.sidebar.image('logo.png')
 ######################################################################################################################
 # Cargar el archivo CSV
-df = pd.read_csv('prediciones/prediciones_07_12_2023.csv')
-
+try:
+    df = pd.read_csv('prediciones/prediciones_07_12_2023.csv')
+except:
+    df = Path(__file__).parents[1] / 'prediciones/prediciones_07_12_2023.csv'
 # Variable de estado para controlar la pestaña activa
 active_tab = st.sidebar.radio("Navigation", ["🎯 **Flight Delay Predictions**", "📊 **MAD Flights Dashboards**",
 "🗺️ **Foursquare Studio Flights map**"])
